@@ -1,15 +1,22 @@
 package Telas;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 public class TelaCadastro extends javax.swing.JFrame {
     
     TelaLogin inicial;
-
+    
     public TelaCadastro() {
         initComponents();
+        this.AbrirTela();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -26,6 +33,9 @@ public class TelaCadastro extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         chkTermos = new javax.swing.JCheckBox();
         lblVoltar = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblData = new javax.swing.JLabel();
+        lblHora = new javax.swing.JLabel();
         Fundo_Cad = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,13 +103,43 @@ public class TelaCadastro extends javax.swing.JFrame {
         chkTermos.setBounds(13, 250, 270, 23);
 
         lblVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/voltar.png"))); // NOI18N
+        lblVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblVoltarMouseClicked(evt);
             }
         });
         jPanel1.add(lblVoltar);
-        lblVoltar.setBounds(20, 20, 30, 30);
+        lblVoltar.setBounds(20, 30, 30, 30);
+
+        jPanel2.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel2.setForeground(new java.awt.Color(255, 153, 0));
+
+        lblData.setBackground(new java.awt.Color(255, 255, 255));
+        lblData.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+
+        lblHora.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblHora.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblHora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sinal-wifi.png"))); // NOI18N
+        lblHora.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblHora, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel2);
+        jPanel2.setBounds(0, 0, 300, 20);
 
         Fundo_Cad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Fundo.png"))); // NOI18N
         Fundo_Cad.setText("jLabel5");
@@ -121,6 +161,14 @@ public class TelaCadastro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void AbrirTela() {        
+        Date dataSistema = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        lblData.setText(formato.format(dataSistema));
+        
+        Timer timer = new Timer(1000, new hora());
+        timer.start();
+    }    
     private void txtNovaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNovaSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNovaSenhaActionPerformed
@@ -130,7 +178,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_chkTermosActionPerformed
 
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
-                if (txtNome.getText().isEmpty()) {
+        if (txtNome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite seu nome!");
         } else {
             if (txtEmail.getText().isEmpty()) {
@@ -154,15 +202,15 @@ public class TelaCadastro extends javax.swing.JFrame {
                 }
             }
         }
-    
+        
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
     private void lblVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVoltarMouseClicked
         inicial = new TelaLogin();
-        inicial.setVisible(true);      
+        inicial.setVisible(true);        
         dispose();
     }//GEN-LAST:event_lblVoltarMouseClicked
-
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -204,10 +252,21 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblData;
+    private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblVoltar;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNovaSenha;
     private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
+    class hora implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Calendar now = Calendar.getInstance();
+            lblHora.setText(String.format("%1$tH:%1$tM:%1$tS", now));
+        }
+    }
 }
