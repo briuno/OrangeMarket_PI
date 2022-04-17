@@ -1,7 +1,5 @@
 //alt
 
-//tentando usar ainda essa bagaça 2.0
-
 package Telas;
 
 public class TelaLogin extends javax.swing.JFrame {
